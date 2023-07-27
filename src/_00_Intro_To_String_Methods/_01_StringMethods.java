@@ -46,15 +46,15 @@ public class _01_StringMethods {
 	// If String s contains the word "underscores", change all of the spaces
 	// to underscores
 	public static String formatSpaces(String s) {
-		String ss = "";
+		String sss = "";
 		if (s.contains("underscores")) {
-			ss = s.replace(' ', '_');
+			sss = s.replace(' ', '_');
 
 		} else {
-			ss = s;
+			sss = s;
 		}
 
-		return ss;
+		return sss;
 	}
 
 	// Return the name of the person whose LAST name would appear first if they
@@ -62,29 +62,97 @@ public class _01_StringMethods {
 	// You cannot assume there are no extra spaces around the name, but you can
 	// assume there is only one space between the first and last name
 	public static String lineLeader(String s1, String s2, String s3) {
-	String[] s11 = s1.split(" ");
-	String[] s22 = s2.split(" ");
-	String[] s33 = s3.split(" ");
-	
-//this is legit hopeless
-	
-		
-		
-		return null;
+
+		s1 = s1.trim();
+		s2 = s2.trim();
+		s3 = s3.trim();
+		String[] s11 = s1.split(" ");
+		String[] s22 = s2.split(" ");
+		String[] s33 = s3.split(" ");
+
+		String originalFirst = s1;
+		String originalSecond = s2;
+		String originalThird = s3;
+
+		s1 = s11[1];
+		s2 = s22[1];
+		s3 = s33[1];
+		String[] lastNames = { s1, s2, s3 };
+		for (int i = 0; i < lastNames.length; i++) {
+			// System.out.println(lastNames[i]);
+		}
+
+		for (int i = 0; i < lastNames.length; i++) {
+			for (int k = 0; k < lastNames.length - 1; k++) {
+				if (lastNames[k].compareToIgnoreCase(lastNames[k + 1]) > 0) {
+					String bucket = lastNames[k];
+					lastNames[k] = lastNames[k + 1];
+					lastNames[k + 1] = bucket;
+
+				}
+			}
+		}
+
+		for (int i = 0; i < lastNames.length; i++) {
+			// System.out.println(lastNames[i]);
+		}
+		String theGuy = "";
+		for (int i = 0; i < lastNames.length; i++) {
+			if (lastNames[0].equals(s1)) {
+				theGuy = originalFirst;
+			}
+			if (lastNames[0].equals(s2)) {
+				theGuy = originalSecond;
+			}
+			if (lastNames[0].equals(s3)) {
+				theGuy = originalThird;
+			}
+		}
+		// System.out.println(theGuy);
+
+		return theGuy;
 	}
 
 	// Return the sum of all numerical digits in the String
 	public static int numeralSum(String s) {
-		return 0;
+		int addition = 0;
+		int newNumber = 0;
+		for (int i = 0; i < s.length(); i++) {
+			if (Character.isDigit(s.charAt(i))) {
+				String a = s.charAt(i) + "";
+				newNumber = 0;
+				newNumber = Integer.parseInt(a);
+				addition = addition + newNumber;
+
+			}
+		}
+
+		//System.out.println(addition);
+		return addition;
 	}
 
 	// Return the number of times String substring appears in String s
 	public static int substringCount(String s, String substring) {
-		return 0;
+		int subLength = substring.length();
+		int count = 0;
+		for (int i = 0; i < (s.length() - subLength)+1; i++) {
+			String chunk = s.substring(i, i+subLength);
+			if (chunk.equalsIgnoreCase(substring)) {
+				count++;
+			}
+			System.out.println(chunk);
+		}
+
+		return count;
 	}
 
 	// Call Utilities.encrypt at the bottom of this file to encrypt String s
 	public static String encrypt(String s, char key) {
+		
+		//String thing = Utilities.encrypt(s, key);
+		
+		
+		
 		return null;
 	}
 
@@ -125,6 +193,7 @@ class Utilities {
 		return Base64.getEncoder().encodeToString(plaintext);
 	}
 
+	
 	public static String decrypt(String cyphertext, byte key) {
 		byte[] b = Base64.getDecoder().decode(cyphertext);
 		for (int i = 0; i < b.length; i++) {
