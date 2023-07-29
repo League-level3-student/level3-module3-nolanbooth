@@ -127,7 +127,7 @@ public class _01_StringMethods {
 			}
 		}
 
-		//System.out.println(addition);
+		// System.out.println(addition);
 		return addition;
 	}
 
@@ -135,8 +135,8 @@ public class _01_StringMethods {
 	public static int substringCount(String s, String substring) {
 		int subLength = substring.length();
 		int count = 0;
-		for (int i = 0; i < (s.length() - subLength)+1; i++) {
-			String chunk = s.substring(i, i+subLength);
+		for (int i = 0; i < (s.length() - subLength) + 1; i++) {
+			String chunk = s.substring(i, i + subLength);
 			if (chunk.equalsIgnoreCase(substring)) {
 				count++;
 			}
@@ -148,30 +148,56 @@ public class _01_StringMethods {
 
 	// Call Utilities.encrypt at the bottom of this file to encrypt String s
 	public static String encrypt(String s, char key) {
-		
-		//String thing = Utilities.encrypt(s, key);
-		
-		
-		
-		return null;
+		byte[] array = s.getBytes();
+
+		byte copy = (byte) key;
+
+		return Utilities.encrypt(array, copy);
 	}
 
 	// Call Utilities.decrypt at the bottom of this file to decrypt the
 	// cyphertext (encrypted text)
 	public static String decrypt(String s, char key) {
-		return null;
+		byte copy = (byte) key;
+
+		return Utilities.decrypt(s, copy);
+
 	}
 
 	// Return the number of words in String s that end with String substring
 	// You can assume there are no punctuation marks between words
 	public static int wordsEndsWithSubstring(String s, String substring) {
-		return 0;
+		String[] substrings = s.split(" ");
+		int count = 0;
+		for (int i = 0; i < substrings.length; i++) {
+			String word = substrings[i];
+			// word is now equal to a word
+			// must check if word ends with substring
+			if (word.endsWith(substring)) {
+				count++;
+			}
+
+		}
+
+		return count;
 	}
 
 	// Given String s, return the number of characters between the first
 	// occurrence of String substring and the final occurrence
 	// You can assume that substring will appear at least twice
 	public static int distance(String s, String substring) {
+		int subLength = substring.length();
+		int beginning = 0;
+		System.out.println("Searching for Distance Between Substrings");
+		bill: for (int i = 0; i < (s.length() - subLength) + 1; i++) {
+			String chunk = s.substring(i, i + subLength);
+			if (chunk.equalsIgnoreCase(substring)) {
+				beginning = i+subLength;
+				System.out.println(chunk);
+				break bill;
+			}
+			
+		}
 		return 0;
 	}
 
@@ -193,7 +219,6 @@ class Utilities {
 		return Base64.getEncoder().encodeToString(plaintext);
 	}
 
-	
 	public static String decrypt(String cyphertext, byte key) {
 		byte[] b = Base64.getDecoder().decode(cyphertext);
 		for (int i = 0; i < b.length; i++) {
