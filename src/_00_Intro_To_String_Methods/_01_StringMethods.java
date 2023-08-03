@@ -140,7 +140,7 @@ public class _01_StringMethods {
 			if (chunk.equalsIgnoreCase(substring)) {
 				count++;
 			}
-			System.out.println(chunk);
+			//System.out.println(chunk);
 		}
 
 		return count;
@@ -186,25 +186,56 @@ public class _01_StringMethods {
 	// occurrence of String substring and the final occurrence
 	// You can assume that substring will appear at least twice
 	public static int distance(String s, String substring) {
+		//instead of doing this I could have just used indexOf and lastIndexOf and subtracted them -_-
+		//indexOf and lastIndexOf can take substringssssss
+		
 		int subLength = substring.length();
 		int beginning = 0;
-		System.out.println("Searching for Distance Between Substrings");
+		int ending = 0;
+		//System.out.println("Searching for Distance Between Substrings");
 		bill: for (int i = 0; i < (s.length() - subLength) + 1; i++) {
 			String chunk = s.substring(i, i + subLength);
 			if (chunk.equalsIgnoreCase(substring)) {
 				beginning = i+subLength;
-				System.out.println(chunk);
+				//System.out.println(chunk);
 				break bill;
 			}
 			
+		}john: for (int i = s.length()-subLength; i >= 0; i++) {
+			String chunk = s.substring(i, i+subLength);
+			if(chunk.equalsIgnoreCase(substring)) {
+				ending = i;
+				//System.out.println(chunk);
+				break john;
+			}
 		}
-		return 0;
+		int difference = ending-beginning;
+		//System.out.println(difference);
+		return difference;
 	}
 
 	// Return true if String s is a palindrome
 	// palindromes are words or phrases are read the same forward as backward.
 	// HINT: ignore/remove all punctuation and spaces in the String
 	public static boolean palindrome(String s) {
+		System.out.println(s);
+	
+		s = s.replace("?", "");
+		s = s.replace(".", "");
+		s = s.replace(" ", "");
+		s = s.replace("-", "");
+		s = s.replace(",", "");
+		s = s.replace(":", "");
+		s = s.toLowerCase();
+		
+		System.out.println(s);
+		for(int i = 0; i < s.length(); i++) {
+			if(s.charAt(i) != s.charAt((s.length()-i)-1)) {
+				return false;
+			}
+		}
+		
+		
 		return true;
 	}
 }
