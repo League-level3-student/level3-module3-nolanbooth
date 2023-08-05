@@ -18,18 +18,23 @@ public class _01_TheWave {
 
 	public static ArrayList<String> wave(String str) {
 		String withoutSpace = str.trim();
+		//System.out.println(withoutSpace);	
+		
 		withoutSpace = withoutSpace.replace(" ", "");
+		//System.out.println(withoutSpace);
+		//System.out.println(withoutSpace.length());
 		//System.out.println("Trimmed and spaces removed: " + withoutSpace);
-
+		
 		ArrayList<String> nooo = new ArrayList<String>();
 		ArrayList<String> yesss = new ArrayList<String>();
 		// making all the values the string value
+		//System.out.println(withoutSpace.length()+1);
 		for (int i = 0; i < withoutSpace.length()+1; i++) {
 			nooo.add(str);
 		}
 		//System.out.println("Size of arraylist should be the length of withoutSpace. ArrayList: " + nooo.size()
 		//		+ "  withoutSpace: " + withoutSpace.length());
-		for (int i = 0; i < nooo.size(); i++) {
+		for (int i = 0; i < nooo.size()-1; i++) {
 			if(nooo.get(i).charAt(i) != ' ') {
 				String theWord = nooo.get(i);
 				StringBuilder bob = new StringBuilder(theWord);
