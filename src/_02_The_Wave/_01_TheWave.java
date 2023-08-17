@@ -34,7 +34,10 @@ public class _01_TheWave {
 		}
 		//System.out.println("Size of arraylist should be the length of withoutSpace. ArrayList: " + nooo.size()
 		//		+ "  withoutSpace: " + withoutSpace.length());
-		for (int i = 0; i < nooo.size()-1; i++) {
+		System.out.println("Without space length : " + withoutSpace.length());
+		
+		int thing = nooo.size()-1;
+		for (int i = 0; i < thing; i++) {
 			if(nooo.get(i).charAt(i) != ' ') {
 				String theWord = nooo.get(i);
 				StringBuilder bob = new StringBuilder(theWord);
@@ -46,6 +49,8 @@ public class _01_TheWave {
 				
 				//System.out.println(theWord);
 				yesss.add(theWord);
+			}else {
+				thing = thing + 1;
 			}
 			
 		}
